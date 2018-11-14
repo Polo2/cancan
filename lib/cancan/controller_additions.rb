@@ -254,7 +254,7 @@ module CanCan
       #     check_authorization :unless => :devise_controller?
       #
       def check_authorization(options = {})
-        self.after_filter(options.slice(:only, :except)) do |controller|
+        self.after_action(options.slice(:only, :except)) do |controller|
           next if controller.instance_variable_defined?(:@_authorized)
           next if options[:if] && !controller.send(options[:if])
           next if options[:unless] && controller.send(options[:unless])
